@@ -12,7 +12,7 @@
 const id = Symbol('123')
 const anotherId = Symbol('123')
 
-console.log(id === anotherId); // false
+// console.log(id === anotherId); // false
 
 // const bigNumber = 3456543576654356754n
 
@@ -26,4 +26,19 @@ const myFunction = function(){// return type is function object
     console.log("Hello world");
 }
 
-console.log(typeof anotherId); 
+// console.log(typeof anotherId); 
+
+
+// Stack(Primitive) , Heap(Non-Primitive)
+
+let userOne = {
+    email : "example@google.com",
+    upiId : "sample@ybl"
+}
+
+let userTwo = userOne;
+userTwo.email = "newEmail@google.com"
+
+console.log(userOne.email); // heap has the object and the reference has been given to userTwo, so the value changes for both
+console.log(userTwo.email);
+
