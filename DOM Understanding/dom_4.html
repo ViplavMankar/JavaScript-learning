@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding no.4</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    function addLanguage(languageName){
+        const liEl = document.createElement('li')
+        liEl.innerHTML = `${languageName}`
+        document.querySelector('.language')
+                .appendChild(liEl)
+    }
+    addLanguage("python")
+    addLanguage("typescript")
+
+    function addOptimized(lngName){
+        const liEl = document.createElement('li')
+        liEl.appendChild(document.createTextNode(lngName))
+        document.querySelector('.language').appendChild(liEl)
+    }
+    addOptimized('golang')
+
+    //Edit
+    const secondLang = document.querySelector("li:nth-child(2)")
+    const newLi = document.createElement('li')
+    newLi.textContent = "Mongo"
+    secondLang.replaceWith(newLi)
+
+    //edit
+    const firstLang = document.querySelector("li:first-child")
+    firstLang.outerHTML = '<li>Java</li>'
+
+    //remove
+    const lastLang = document.querySelector('li:last-child')
+    lastLang.remove()
+</script>
+</html>
