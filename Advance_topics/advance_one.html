@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121; color: aliceblue;">
+    UNSENT
+
+0
+
+The request has not been initialized yet. So initially readyState is 0.
+
+OPENED
+
+1
+
+When an open() method is called, the connection is getting established, and hence the status changes to 1.
+
+HEADERS_RECEIVED
+
+2
+
+When the send() method is called, the request is received, and hence the status changes to 2 & the headers and status will be available accordingly.
+
+LOADING
+
+3
+
+During the time of processing the request, the downloading will be performed & the responseText carries the partial data & the status will change to 3.
+
+DONE
+
+4
+
+When the request is finished processing and it is about to deliver the response, then the status changes to 4.
+    <div class="card"></div>
+</body>
+<script>
+    const api_request_string = "https://api.github.com/users/viplavmankar"
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', api_request_string);
+    xhr.onreadystatechange = function(){
+        console.log(xhr.readyState);
+        if(xhr.readyState === 4){
+            const data = JSON.parse(this.responseText);
+            console.log('followers',data.followers);
+            
+            const card_element = document.querySelector('.card');
+            // console.log(card);
+            const followers = data.followers;
+            const pfp = data.avatar_url;
+            // console.log(followers, pfp);
+            card_element.innerHTML = `<img src=${pfp} alt="profile_photo" width="500" height="600">`
+            const followers_element = document.createElement('h2')
+            followers_element.innerHTML = `${followers}`
+            card_element.appendChild(followers_element)
+        }
+    }
+    xhr.send();
+</script>
+</html>
